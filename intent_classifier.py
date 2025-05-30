@@ -2,7 +2,6 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sentence_transformers import SentenceTransformer
-from sklearn.pipeline import Pipeline
 
 import pandas as pd
 
@@ -19,8 +18,3 @@ X_test_embed = llm.encode(X_test.tolist(), convert_to_numpy=True)
 
 model = LinearSVC(class_weight='balanced', C = 0.1)
 model.fit(X_train_embed, y_train)
-
-# y_pred = model.predict(X_test_embed)
-# print(classification_report(y_test, y_pred))
-
-print(model.predict_proba(llm.encode(['How does our policy define obsolete inventory, and how many such items exist right now?'])))
